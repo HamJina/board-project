@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/board?useSSL=false&serverTimezone=UTC
+    username: "root" //실제 본인의 mysql username
+    password: "root" //실제 본인의 mysql password
+  thymeleaf:
+    cache: false
+
+  jpa:
+    hibernate:
+      ddl-auto: update # create, update, or none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    open-in-view: false
