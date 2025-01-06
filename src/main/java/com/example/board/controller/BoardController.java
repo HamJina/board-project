@@ -4,7 +4,10 @@ import com.example.board.dto.BoardDTO;
 import com.example.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/board")
@@ -18,9 +21,19 @@ public class BoardController {
         return "save";
     }
 
+    //게시글 작성
     @PostMapping("/save")
     public String save(@ModelAttribute BoardDTO boardDTO) {
         boardService.save(boardDTO);
         return "index";
+    }
+
+    //게시글 목록
+    @GetMapping("/")
+    public String findAll(Model model) {
+        //Model은 Spring MVC에서 컨트롤러와 뷰(View) 사이에 데이터를 전달하는 데 사용
+        List<BoardDTO> boardDTOList = boardService.findAll();
+        model.addAttribute("boardList", boardDTOList);
+        return "list";
     }
 }
